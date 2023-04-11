@@ -69,11 +69,11 @@ public class User {
     /**
      * 真实姓名
      */
-    private String truename;
+    private String true_name;
     /**
      * 最近登录
      */
-    private String recentlogin;
+    private String recent_login;
     /**
      * 角色集合
      */
@@ -85,9 +85,8 @@ public class User {
         this.password = password;
     }
 
-    public User(Integer id, String username, Integer age, String phone, String password, String email, String avatar,
-                String birthday, String personal, String truename, String recentlogin, List<Role> roles) {
-        Id = id;
+    public User(String username, Integer age, String phone, String password, String email, String avatar,
+                String birthday, String personal, String true_name, String recent_login, List<Role> roles) {
         this.username = username;
         this.age = age;
         this.phone = phone;
@@ -96,8 +95,8 @@ public class User {
         this.avatar = avatar;
         this.birthday = birthday;
         this.personal = personal;
-        this.truename = truename;
-        this.recentlogin = recentlogin;
+        this.true_name = true_name;
+        this.recent_login = recent_login;
         this.roles = roles;
     }
 }

@@ -28,7 +28,7 @@ public class RegisterController {
     @Autowired
     UserService userService;
 
-    @PostMapping(value = "/register", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "/register-save", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String register(User user,
                            HttpServletRequest request) {
         if (userService.usernameIsExist(user.getUsername()) || user.getUsername().equals(NameType.ANONYMOUS_USER)) {
@@ -37,9 +37,11 @@ public class RegisterController {
         }
         SHAUtil shaUtil = new SHAUtil();
         user.setPassword(shaUtil.SHA256Encrypt(user.getPassword()));
+        user.setUsername(user.getUsername().replaceAll(" ", ""));
 
-        DataMap data = userService.insert(user);
-        log.error("[{}] register is success", TimeUtils.getCurrentTime());
-        return JsonResult.build(data).toJSON();
+        userService.insert(user);
+        log.info("[{}] register is success", TimeUtils.getCurrentTime());
+        // 重定向至login页面
+        return "redirect:/login";
     }
 }

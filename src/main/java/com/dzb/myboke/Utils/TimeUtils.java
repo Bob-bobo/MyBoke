@@ -18,4 +18,9 @@ public class TimeUtils {
         Date date = new Date();// 获取当前时间
         return sdf.format(date);
     }
+
+    public long getCurrentDate() {
+        Date date = new Date();
+        return date.getTime() / 1000;
+    }
 }

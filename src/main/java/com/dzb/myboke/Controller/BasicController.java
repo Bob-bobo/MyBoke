@@ -39,7 +39,7 @@ public class BasicController {
     public String index(HttpServletRequest request, HttpServletResponse response){
         response.setHeader("Access-Control-Allow-Origin","*");
         response.setHeader("lastUrl", (String) request.getSession().getAttribute("lastUrl"));
-        return "login";
+        return "index";
     }
     /**
      * 登录页面
@@ -61,5 +61,11 @@ public class BasicController {
     public String forget() {
         log.info("[{}]: is forget in the web", TimeUtils.getCurrentTime());
         return "forget";
+    }
+
+    @GetMapping("/index")
+    public String index() {
+        log.info("[{}]: login to the web is success", TimeUtils.getCurrentTime());
+        return "index";
     }
 }

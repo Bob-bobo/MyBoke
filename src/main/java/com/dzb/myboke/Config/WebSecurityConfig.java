@@ -5,6 +5,7 @@ import com.dzb.myboke.Utils.SHAUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -35,23 +36,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //允许所有用户访问"/"和"/home"
-        http.authorizeRequests()
-                .antMatchers("/login","/register").permitAll()
-                //其他地址的访问均需验证权限
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")  //指定登录页是"/login"
-                .defaultSuccessUrl("/list")  //登录成功后默认跳转到"list"
+        http
+                .authorizeRequests()
+                .antMatchers("/login","/register")
                 .permitAll()
+                .antMatchers("/editor","/user","/","/calligraphy","/score").hasAnyRole("USER")
+                .antMatchers("/teacher").hasAnyRole("ADMIN")
+                .antMatchers("/admin").hasAnyRole("SUPERADMIN")
                 .and()
-                .logout()
-                .logoutSuccessUrl("/login")  //退出登录后的默认url是"/home"
-                .permitAll()
+                .formLogin().loginPage("/login").failureUrl("/login?error").defaultSuccessUrl("/")
                 .and()
                 .headers().frameOptions().sameOrigin()
                 .and()
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/");
+
+        http.csrf().disable();
     }
 
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

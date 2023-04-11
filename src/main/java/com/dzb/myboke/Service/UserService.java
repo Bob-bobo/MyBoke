@@ -47,4 +47,18 @@ public interface UserService {
      * @return
      */
     boolean userIsExist(String phone);
+
+    /**
+     * 通过用户名查询用户
+     * @param consumer
+     * @return
+     */
+    User getUserByConsumer(String consumer);
+
+    /**
+     * 通过手机号、邮箱、用户名登录
+     * @param consumer
+     * @param recent_login
+     */
+    void updateRecentLogin(String consumer, long recent_login);
 }
