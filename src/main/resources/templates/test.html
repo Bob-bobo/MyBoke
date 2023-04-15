@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="util.js" type="text/javascript" >
+    </script>
+</head>
+<body>
+<div >
+			<span >
+			用户名：
+			</span>
+    <span >
+			<input type="text"  id="name" placeholder="请输入用户名"
+                   onblur="userNameBlur()"  onfocus="textFocus('user','【不能为空，或是纯数字】')"/>
+			</span>
+    <span id="user">
+			【不能为空，或是纯数字】
+			</span>
+
+</div>
+
+<div id="">
+			<span >
+			密&nbsp;码：
+			</span>
+    <span >
+			<input type="password"  id="pwd_1" placeholder="请输入密码"
+                   onblur="pwd_1Blur()"  onfocus="textFocus('text_1','【不能为空，或是纯数字】')"/>
+			</span>
+    <span id="text_1">
+
+			</span>
+</div>
+<div >
+			<span >
+			确认密码：
+			</span>
+
+    <span >
+			<input type="password"  id="pwd_2" placeholder="请再次输入密码"
+                   onblur="pwd_2Blur()"  onfocus="textFocus('text_2','【两次密码要一致】')"/>
+			</span>
+
+    <span id="text_2">
+			【两次密码必须一致】
+			</span>
+</div>
+
+<div id="">
+			<span >
+			年龄：
+			</span>
+    <span >
+			<input type="text"  id="age" placeholder="请输入年龄"
+                   onblur="ageBlur()"  onfocus="textFocus('text_3','【年龄在15-150之间】')"/>
+			</span>
+    <span id="text_3" >
+			【年龄必须在15-150之间】
+			</span>
+</div>
+</body>
+
+<script type="text/javascript">
+
+    /* function textFocus(a,b){
+                var x = $("a");
+                x.innerHTML = b;
+                x.style.color = "#000";
+            } */
+    function textFocus(a,b){
+        var lb = $(a);
+        lb.innerHTML = b;
+        lb.style.color = "#000";
+    }
+
+    function userNameBlur(){
+        var name = $("name").value;
+        var user = $("user");
+        if(name != '' && isNaN(name) == true){
+            user.innerHTML = "[√]";
+            user.style.color = "green";
+            $("name").style.borderColor = "green";
+        }else{
+            user.style.color = "red";
+        }
+    }
+
+    function pwd_1Blur(){
+        var pwd_1 = $("pwd_1").value;
+        var text_1 = $("text_1");
+        if(pwd_1 != '' && isNaN(text_1) == true){
+            text_1.innerHTML = "[√]";
+            text_1.style.color = "green";
+            $("pwd_1").style.borderColor = "green";
+        }else{
+            text_1.style.color = "red";
+        }
+    }
+
+    function pwd_2Blur(){
+        var pwd_1 = $("pwd_1").value;
+        var pwd_2 = $("pwd_2").value;
+        var text_2 = $("text_2");
+        if(pwd_2 ==pwd_1 ){
+            text_2.innerHTML = "[√]";
+            text_2.style.color = "green";
+            $("pwd_2").style.borderColor = "green";
+        }else{
+            text_2.style.color = "red";
+        }
+    }
+
+
+    function ageBlur(){
+        var age = $("age").value;
+
+        var text_3 = $("text_3");
+        if(age<=150&&age>=15){
+            text_3.innerHTML = "[√]";
+            text_3.style.color = "green";
+            $("age").style.borderColor = "green";
+        }else{
+            text_3.style.color = "red";
+        }
+    }
+
+
+
+
+
+</script>
+</html>

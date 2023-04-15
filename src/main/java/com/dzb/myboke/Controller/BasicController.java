@@ -68,4 +68,10 @@ public class BasicController {
         log.info("[{}]: login to the web is success", TimeUtils.getCurrentTime());
         return "index";
     }
+
+    @PostMapping("/login-error")
+    public String loginError() {
+        log.info("[{}]: login is error in the web", TimeUtils.getCurrentTime());
+        return "login";
+    }
 }

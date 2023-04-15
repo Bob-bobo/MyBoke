@@ -21,6 +21,10 @@ public enum CodeType {
 
     PHONE_IS_REGISTERED(408, "手机号已被注册"),
 
+    CONSUMER_IS_ERROR(409, "用户错误"),
+
+
+
     SERVICE_FAIL_STATUS(500, "服务报错");
 
     private int code;

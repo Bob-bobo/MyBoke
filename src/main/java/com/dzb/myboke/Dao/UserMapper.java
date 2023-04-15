@@ -76,4 +76,7 @@ public interface UserMapper {
 
     @Update("update user_tab set recent_login = #{arg1} where phone = #{arg0}")
     void updateRecentLogin(@Param("phone") String phone, @Param("recent_login") long recent_login);
+
+    @Update("update user_tab set password = #{arg0} where phone = #{arg1}")
+    void updatePassword(@Param("password") String newPassword, @Param("phone") String phone);
 }

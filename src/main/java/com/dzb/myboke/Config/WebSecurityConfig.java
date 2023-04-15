@@ -38,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         //允许所有用户访问"/"和"/home"
         http
                 .authorizeRequests()
-                .antMatchers("/login","/register")
+                .antMatchers("/login","/register","/change-password")
                 .permitAll()
                 .antMatchers("/editor","/user","/","/calligraphy","/score").hasAnyRole("USER")
                 .antMatchers("/teacher").hasAnyRole("ADMIN")

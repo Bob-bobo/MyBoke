@@ -19,7 +19,7 @@ public class FormUtil {
         Pattern pattern = null;
         Matcher matcher = null;
         boolean flag = false;
-        pattern = Pattern.compile("^[1][3,4,5,8][0-9]{9}$"); // 验证手机号
+        pattern = Pattern.compile("^[1][0-9]{10}$"); // 验证手机号
         matcher = pattern.matcher(consumer);
         flag = matcher.matches();
         return flag;

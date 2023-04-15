@@ -11,8 +11,8 @@ import java.security.NoSuchAlgorithmException;
 
 public class SHAUtil {
 
-    public static final String KEY_SHA = "SHA";
-    public static final String ALGORITHM = "SHA-256";
+    public final String KEY_SHA = "SHA";
+    public final String ALGORITHM = "SHA-256";
 
     /***
      * SHA加密（比MD5更安全）
@@ -20,14 +20,14 @@ public class SHAUtil {
      * @return
      * @throws Exception
      */
-    public static byte[] encryptSHA(byte[] data) throws Exception{
+    public byte[] encryptSHA(byte[] data) throws Exception{
         MessageDigest sha = MessageDigest.getInstance(KEY_SHA);
         sha.update(data);
         return sha.digest();
     }
 
 
-    public static String SHAEncrypt(final String content) {
+    public String SHAEncrypt(final String content) {
         try {
             MessageDigest sha = MessageDigest.getInstance(KEY_SHA);
             byte[] sha_byte = sha.digest(content.getBytes());
@@ -47,7 +47,7 @@ public class SHAUtil {
 
 
     //SHA-256加密
-    public static String SHA256Encrypt(String sourceStr) {
+    public String SHA256Encrypt(String sourceStr) {
         MessageDigest md = null;
         try {
             md = MessageDigest.getInstance(ALGORITHM);
@@ -63,7 +63,7 @@ public class SHAUtil {
         return null;
     }
 
-    private static String getDigestStr(byte[] origBytes) {
+    private String getDigestStr(byte[] origBytes) {
         String tempStr = null;
         StringBuilder stb = new StringBuilder();
         for (int i = 0; i < origBytes.length; i++) {
